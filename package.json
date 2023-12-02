@@ -3,7 +3,7 @@
     "description": "Faceboo Tools",
     "main": "main/index.html",
     "version": "0.1.2",
-    "chromium-args": "--mixed-context --user-data-dir=./.runtime/data --disk-cache-dir=./.runtime/cache --disable-raf-throttling --no-sandbox --nwapp --allow-running-insecure-content --ignore-certificate-errors --disable-web-security",
+    "chromium-args": "--mixed-context --disable-raf-throttling --no-sandbox --nwapp --allow-running-insecure-content --ignore-certificate-errors --disable-web-security",
     "nodejs": true,
     "window": {
         "id": "fb_tools",
