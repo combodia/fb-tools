@@ -7,7 +7,7 @@
     "nodejs": true,
     "window": {
         "id": "fb_tools",
-        "icon": "main/images/icon.png",
+        "icon": "main/icon.png",
         "title": "FB Tools",
         "toolbar": true,
         "frame": true,
