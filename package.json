@@ -60,9 +60,9 @@
     },
     "license": "MIT",
     "dependencies": {
+        "iconv-lite": "^0.6.3",
         "mysql2": "^3.6.5",
-        "nwjs": "^1.4.4",
-        "iconv-lite": "^0.6.3"
+        "nwjs": "^1.4.4"
     },
     "scripts": {
         "start": "run -x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
@@ -82,6 +82,6 @@
     "author": "demon.combodia@gmail.com",
     "devDependencies": {
         "nw": "^0.82.0",
-        "nw-builder": "^4.4.0"
+        "nw-builder": "^4.4.1"
     }
 }
