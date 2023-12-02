@@ -74,21 +74,25 @@ export default class FBTools {
             this.win = win;
             win.on('loaded',()=>{
                 console.log('win.loaded');
-                win.window.fbtools_next = ()=>{
-                    win.close();
-                }
+                let doc = win.window.document;
                 setTimeout(()=>{
-                    let form = win.window.document.querySelector('form#login_form');
+                
+                    let form = doc.querySelector('form#login_form');
                     if ( form )return this.login(form);
-                    let ptl = document.querySelector('div[data-pagelet="ProfileTimeline"]');
-                    if ( !ptl ) return this.setState(-1, 1, 1 );
-                    let post = document.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
+                    let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
+                    if ( !ptl ){
+                        console.log('ptl not found');
+                        return this.setState(-1, 1, 1 );
+                    }
+                    let post = doc.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
                     if ( post.length == 0 )return this.setState(1, 1, 1);
                     for( let div of post ){
+                        // console.log(div);
                         let child = div.children[1] || div.children[0];
                         if ( !child ) continue;
                         if ( this.hasNewPost( child ) )return this.setState(1,1,1);
                     }
+
                     this.setState(-1, 1, 1 );
                 },1e3);
             })
@@ -96,18 +100,22 @@ export default class FBTools {
     }
     hasNewPost(div){
         let ts = div.querySelector('div>div>div>span>span>span>span>a[aria-label][role="link"]>span');
+        if ( !ts )return console.log(div);
         ts = ts.textContent.trim().match(/(\d)+/ig);
-        if ( !ts || ts.length < 2)return true;
-        if ( !this._years )this._years = parseFloat(this.setting.yearsAgo);
-        if ( !this._years == 0)return true;
-        let d = new Date(ts.join('-'));
-        if ( ts.length == 2 ){
+        let l = ts.length;
+        if ( !ts || l < 2)return true;
+        if ( !this._years )this._years = parseFloat(this.setting.years_ago);
+        if ( this._years == 0)return true;
+        ts = ts.join('-');
+        if ( l == 2 ){
             if ( !this._date )this._date = new Date();
-            d = this._date.getFullYear() + d;
+            ts = this._date.getFullYear() +'-'+ ts;
         }
+        let d = new Date(ts);
+        console.log(ts,l);
         try{
-            let yearsAgo = (Date.now() - d.getTime()) / 31536e6;
-            if ( yearsAgo < this._years )return true;
+            let years_ago = (Date.now() - d.getTime()) / 31536e6;
+            if ( years_ago < this._years )return true;
         }catch(err){console.log(err)}
     }
     login(form){
@@ -149,11 +157,11 @@ export default class FBTools {
                 let ol = document.createElement('ol');
                 document.body.appendChild(ol);
                 ol.className = 'list';
-                // ol.onclick = (e)=>{
-                //     if (e.target == ol )return;
-                //     let li = e.target.tagName == 'SPAN'?e.target.parentNode:e.target;
-                //     this.check(li.dataset.index)
-                // }
+                ol.ondblclick = (e)=>{
+                    if (e.target == ol )return;
+                    let li = e.target.tagName == 'SPAN'?e.target.parentNode:e.target;
+                    window.open('https://facebook.com/'+li.dataset.id);
+                }
                 res.forEach((o,i)=>{
                     let li = document.createElement('li');
                     li.innerHTML = `<span>${o.name}</span>`;
