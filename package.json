@@ -1,0 +1,87 @@
+{
+    "name": "FB Tools",
+    "description": "Faceboo Tools",
+    "main": "main/index.html",
+    "version": "0.1.2",
+    "chromium-args": "--mixed-context --user-data-dir=./.runtime/data --disk-cache-dir=./.runtime/cache --disable-raf-throttling --no-sandbox --nwapp --allow-running-insecure-content --ignore-certificate-errors --disable-web-security",
+    "nodejs": true,
+    "window": {
+        "id": "fb_tools",
+        "icon": "main/images/icon.png",
+        "title": "FB Tools",
+        "toolbar": true,
+        "frame": true,
+        "position": "center",
+        "width": 800,
+        "height": 680,
+        "show": true,
+        "min_width": 620,
+        "min_height": 520,
+        "show_in_taskbar": true,
+        "resizable": true,
+        "transparent": false
+    },
+    "webkit": {
+        "plugin": true,
+        "page-cache": false
+    },
+    "domain": "facebook.com",
+    "single-instance": false,
+    "permissions": [
+        "webview",
+        "tabs",
+        "storage",
+        "contextMenus",
+        "webRequestBlocking",
+        "webNavigation",
+        "unlimitedStorage",
+        "notifications",
+        "fileSystem",
+        "node",
+        "<all_urls>",
+        "chrome-extension://*",
+        "http://*/*",
+        "https://*/*",
+        "ftp://*/*",
+        "file://*/*"
+    ],
+    "webview": {
+        "partitions": [
+            {
+                "name": "trusted",
+                "web_accessible_resources": [
+                    "<all_urls>"
+                ],
+                "accessible_resources": [
+                    "<all_urls>"
+                ]
+            }
+        ]
+    },
+    "license": "MIT",
+    "dependencies": {
+        "mysql2": "^3.6.5",
+        "nwjs": "^1.4.4",
+        "iconv-lite": "^0.6.3"
+    },
+    "scripts": {
+        "start": "run -x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+        "dist": "build --tasks win-x64,mac-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ ."
+    },
+    "build": {
+        "win": {
+            "icon": "icon.ico"
+        },
+        "files": [
+            "main/**/*"
+        ],
+        "output": "./releases",
+        "nwVersion": "0.82.0"
+    },
+    "keywords": [],
+    "author": "demon.combodia@gmail.com",
+    "devDependencies": {
+        "nw": "^0.82.0",
+        "nw-builder": "^4.4.0"
+    }
+}

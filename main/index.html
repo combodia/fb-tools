@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="bg">
+<head>
+    <title>Facebook Tools</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Hello Facebook Tools</h1>
+    </header>
+    <iframe style="display: none;" name="iframe" id="iframe"></iframe>
+    <form id="setting" class="sort-label" target="iframe" style="max-width: 400px;">
+        <h2>Setting</h2>
+        <div class="item">
+            <label for="mysql-host">MySQL Host</label>
+            <input id="mysql-host" name="host" type="text" value="loalhost">
+        </div>
+        
+        <div class="item half-width">
+            <label for="mysql-port">MySQL Port</label>
+            <input id="mysql-port" type="number" maxlength="5" minlength="2" min="10" max="99999" name="port" value="3306">
+        </div>
+        
+        <div class="item">
+            <label for="mysql-user">MySQL User</label>
+            <input id="mysql-user" type="text" name="username" value="root">
+        </div>
+        
+        <div class="item">
+            <label for="mysql-pass">MySQL Pass</label>
+            <input id="mysql-pass" type="password" name="password" value="">
+        </div>
+        
+        <div class="item half-width">
+            <label for="mysql-base">Database</label>
+            <input id="mysql-base" type="text" name="database" value="facebook">
+        </div>
+        
+        <div class="item half-width">
+            <label for="sql-limit">Limit</label>
+            <input id="sql-limit" type="number" maxlength="5" minlength="3" min="1" step="1" max="10000" name="limit" value="1000">
+        </div>
+        
+        <div class="item half-width">
+            <label for="max-page">Max Page</label>
+            <input id="max-page" type="number" maxlength="7" minlength="1" min="1" step="1" max="100000" name="max" value="100">
+        </div>
+        
+        <div class="item half-width">
+            <label for="start-count">Start Page</label>
+            <input id="start-count" type="number" maxlength="7" minlength="1" min="1" step="1" max="100000" name="start" value="1">
+        </div>
+
+        <div class="item">
+            <label for="start-count">FB E-Mail</label>
+            <input id="start-count" type="email" minlength="8" name="login_email" placeholder="Facebook Account">
+        </div>
+        
+        <div class="item">
+            <label for="start-count">FB Pass</label>
+            <input id="start-count" type="password" minlength="6" name="login_pass" placeholder="Facebook Password">
+        </div>
+
+        <div class="item">
+            <label for="start-count">Years Ago</label>
+            <input id="start-count" type="number" minlength="1" step="0.01" max="30" min="0" name="years_ago" placeholder="Years" value="1">
+            <p>Dynamic precipitation years</p>
+        </div>
+        
+
+        <div>
+            <button type="submit">Save and tart</button>
+        </div>
+        
+    </form>
+    <script src="index.js" type="module"></script>
+</body>
+</html>

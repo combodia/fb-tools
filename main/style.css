@@ -1,0 +1,80 @@
+:root{
+    --primary-color: rgb(12, 96, 56);
+    --second-color: rgb(16, 149, 85);
+    --special: rgb(182, 201, 15);
+    --black: rgb(32, 32, 32);
+    --white: rgb(255, 255, 255);
+}
+@media (prefers-color-scheme: dark) {
+    :root{
+        --highlight: rgb(0, 255, 153);
+        --bg-color: rgb(34, 38, 36);
+        --bg-second: rgba(31, 35, 32);
+        --color: rgb(147, 192, 168);
+        --alpha-color: rgba(0, 255, 174, 0.1);
+        --alpha-light: rgba(255, 255, 255, 0.08);
+        --alpha-dark: rgba(0,0,0,.25);
+        --alpha-bg: rgba(255,255,255,.1);
+        --halftone: rgba(59, 77, 67, 0.45);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root{
+        --highlight: rgb(0, 181, 66);
+        --bg-color: rgb(249, 250, 250);
+        --bg-second: #fff;
+        --color: rgb(64, 75, 72);
+        --alpha-color: rgba(26, 185, 116, 0.213);
+        --alpha-light: rgba(255, 255, 255, 0.35);
+        --alpha-dark: rgba(10, 26, 20, 0.061);
+        --alpha-bg: rgba(0,0,0,.05);
+        --halftone: rgba(45, 51, 48, 0.699);
+    }
+}
+button,input,input[type="button"],.btn{outline:none;}
+body{ margin: 0 auto;font-size: 14px; padding: 15px;}
+form .item{ border-bottom:1px solid var(--alpha-light); line-height: 36px; margin-bottom: 10px;}
+form .item>label{ display: inline-block; width: 120px; text-align-last: right; white-space: nowrap;}
+form .item>label::after{ content: ':'; margin-right: 5px;}
+form .item>input{ border: none; background-color: transparent; width:calc( 100% - 130px); padding: 0; margin: 0;color: var(--highlight); font-size: 14px;}
+form .item>input:focus{ color: var(--special);}
+.item>p{ text-align: right; margin-top: 0; margin-left: 100px; border-top: 1px dashed var(--alpha-light);font-size:11px;}
+.item.half-width{ width: 60%;}
+.sort-label .item>label{ width: 90px; font-size: 12px;}
+.sort-label .item>input{  width:calc( 100% - 100px);}
+.bg{ background-color: var(--bg-color); color: var(--color);}
+button{ background-color: var(--primary-color); color: var(--highlight); border: none; box-shadow: 0 0 1px var(--alpha-dark); line-height: 36px; padding: 0 10px; border-radius: 2px;}
+button:hover{ background-color: var(--second-color); color: var(--special);}
+ol.list{ padding: 10px; margin: 0; column-count: 3;-webkit-column-break-inside: avoid;}
+ol>li{ margin: 0; padding:0; break-inside: avoid; line-height: 30px;}
+ol>li>span{ display: inline-block; padding: 0 10px;}
+ol>li[data-state="1"]{ background-color: var(--primary-color);color: var(--white);}
+ol>li[data-state="-1"]{ background-color: var(--bg-second);color: var(--halftone);}
+
+#progress{ position: fixed; appearance: none; top: 0; left: 0; right:0; width: 100%; height: 8px;}
+progress::-webkit-progress-bar{ background-color: var(--alpha-dark);}
+progress::-webkit-progress-inner-element{ background-color: var(--primary-color);}
+progress::-webkit-progress-value{ background-color: var(--highlight);}
+@media only screen and (max-width:1900px){
+    ol.list{ column-count: 6;}
+}
+@media only screen and (max-width:1800px){
+    .column:not([count]){ column-count: 3;}
+}
+@media only screen and (max-width:1600px){
+    ol.list{ column-count: 5;}
+}
+
+@media only screen and (max-width:1280px){
+    ol.list{ column-count: 4;}
+}
+@media only screen and (max-width:800px){
+    ol.list{ column-count: 3;}
+}
+@media only screen and (max-width:760px){
+    ol.list{ column-count: 2;}
+}
+@media only screen and (max-width:500px){
+    ol.list{ column-count:1;}
+}
