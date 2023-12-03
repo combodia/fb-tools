@@ -1,6 +1,0 @@
-2023/12/04-02:57:36.666 3a03 Reusing MANIFEST /Users/homeless/wwwroot/fb-tools/.runtime/data/Default/Local Storage/leveldb/MANIFEST-000001
-2023/12/04-02:57:36.669 3a03 Recovering log #3
-2023/12/04-02:57:36.670 3a03 Reusing old log /Users/homeless/wwwroot/fb-tools/.runtime/data/Default/Local Storage/leveldb/000003.log 
-2023/12/04-02:58:12.250 3603 Level-0 table #5: started
-2023/12/04-02:58:12.274 3603 Level-0 table #5: 16653 bytes OK
-2023/12/04-02:58:12.334 3603 Delete type=0 #3
