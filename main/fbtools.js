@@ -19,7 +19,8 @@ export default class FBTools {
             start: 1,
             years_ago: 1,
             login_email: '',
-            login_pass: ''
+            login_pass: '',
+            visible: 0
         };
     }
     
@@ -68,7 +69,8 @@ export default class FBTools {
         let url = 'https://facebook.com/'+dom.dataset.id
         if (!this.win ){
             nw.Window.open( url,{
-                // show:false
+                show: false
+                // show: this.setting.visible != 0
                 // inject_js_end: 'main/inject-end.js'
             }, win=> {
                 this.win = win;
