@@ -14,11 +14,10 @@ chrome.webRequest.onBeforeRequest.addListener( details=>{
     return { cancel: true }
 },{
     urls: [
-        "http://*/*",
-        "https://*/*"
+        "*://*.fbcdn.net/*"
     ],
     types:[
-        "image", "stylesheet"
+        "image"
     ]
 }, ["blocking"]);
 // mainWindow.showDevTools();

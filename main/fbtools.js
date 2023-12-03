@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 export default class FBTools {
-    constructor() {
+    constructor(mainWindow) {
         this.connection = null;
         this.page = 1;
         this.index = 0;
@@ -22,6 +22,7 @@ export default class FBTools {
             login_pass: '',
             visible: 0
         };
+        this.mainWindow = mainWindow;
     }
     
     complete(){
@@ -45,6 +46,14 @@ export default class FBTools {
     check(index){
         // console.log('index', index);
         // this.progress.max = this.setting.limit;
+        if ( this.needLogin ){
+            if (!this.logintimer) this.logintimer = setTimeout(()=>{
+                clearTimeout(this.logintimer);
+                delete this.logintimer;
+                this.check(index);
+            },1e3);
+            return;
+        }
         this.progress.value = index;
         index = parseInt(index);
         if ( index >= this.setting.limit ){
@@ -79,6 +88,7 @@ export default class FBTools {
                     let doc = win.window.document;
                     let form = doc.querySelector('form#login_form');
                     if ( form )return this.login(form);
+                    this.needLogin = false;
                     let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
                     if ( !ptl ){
                         console.log('ptl not found');
@@ -104,7 +114,7 @@ export default class FBTools {
         if ( !ts )return console.log(div);
         ts = ts.textContent.trim().match(/(\d)+/ig);
         let l = ts.length;
-        if ( !ts || l < 2)return true;
+        if ( !ts || l < 2 || l > 3)return true;
         if ( !this._years )this._years = parseFloat(this.setting.years_ago);
         if ( this._years == 0)return true;
         ts = ts.join('-');
@@ -121,9 +131,10 @@ export default class FBTools {
     }
     login(form){
         if(this.win)this.win.show();
+        this.needLogin = true;
         let email = this.setting.login_email;
-        let pass = this.setting.login_pass;
         if ( !email || !pass  )return;
+        let pass = this.setting.login_pass;
         let u = form.querySelector('input[name="email"]');
         let p = form.querySelector('input[name="pass"]');
         u.value = email;
@@ -191,6 +202,13 @@ export default class FBTools {
         console.log('current page', this.page );
         callback && callback();
     }
+
+    setTitle( title ){
+        title = title || this.setting.login_email;
+        if ( !title || title == 'null')title = 'FB Tools - ' + process.cwd();
+        if ( 'setTitle' in this.mainWindow ) this.mainWindow.setTitle( title );
+        else document.title = title;
+    }
     loadSetting(form) {
         if (!(form instanceof HTMLFormElement)) return;
         // form.querySelectorAll('input[type="number"]').forEach(input=>{
@@ -212,7 +230,6 @@ export default class FBTools {
                 }
             }
             localStorage.setItem('setting', JSON.stringify(conf));
-        
             console.log(conf);
             if(!this.connection)this.connection = mysql.createConnection({
                 host: conf.host,
@@ -236,6 +253,7 @@ export default class FBTools {
             this.setting = conf;
             this.page = conf.start;
             
+            this.setTitle();
             // // 使用占位符
             // this.connection.query(
             //     'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?',
@@ -255,6 +273,8 @@ export default class FBTools {
                 for (let k in str) {
                     if (k in form) form[k].value = this.setting[k] = str[k];
                 }
+
+                this.setTitle();
             } catch (err) {
                 console.log(err)
             }

@@ -1,0 +1,25 @@
+2023/12/04-03:06:14.030 3f07 Reusing MANIFEST /Users/homeless/wwwroot/fb-tools/.runtime/data/Default/Local Storage/leveldb/MANIFEST-000001
+2023/12/04-03:06:14.033 3f07 Recovering log #4
+2023/12/04-03:06:14.034 3f07 Level-0 table #7: started
+2023/12/04-03:06:14.056 3f07 Level-0 table #7: 15662 bytes OK
+2023/12/04-03:06:14.117 3f07 Delete type=0 #4
+2023/12/04-03:06:52.403 3503 Level-0 table #10: started
+2023/12/04-03:06:52.424 3503 Level-0 table #10: 13922 bytes OK
+2023/12/04-03:06:52.463 3503 Delete type=0 #8
+2023/12/04-03:07:24.000 3503 Level-0 table #12: started
+2023/12/04-03:07:24.022 3503 Level-0 table #12: 13934 bytes OK
+2023/12/04-03:07:24.062 3503 Delete type=0 #9
+2023/12/04-03:08:00.548 3503 Level-0 table #14: started
+2023/12/04-03:08:00.572 3503 Level-0 table #14: 11245 bytes OK
+2023/12/04-03:08:00.613 3503 Delete type=0 #11
+2023/12/04-03:08:00.615 3503 Compacting 4@0 + 0@1 files
+2023/12/04-03:08:00.638 3503 Generated table #15@0: 823 keys, 15854 bytes
+2023/12/04-03:08:00.638 3503 Compacted 4@0 + 0@1 files => 15854 bytes
+2023/12/04-03:08:00.676 3503 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/12/04-03:08:00.677 3503 Delete type=2 #14
+2023/12/04-03:08:00.677 3503 Delete type=2 #7
+2023/12/04-03:08:00.678 3503 Delete type=2 #12
+2023/12/04-03:08:00.678 3503 Delete type=2 #10
+2023/12/04-03:08:26.922 3503 Level-0 table #17: started
+2023/12/04-03:08:26.943 3503 Level-0 table #17: 16461 bytes OK
+2023/12/04-03:08:26.984 3503 Delete type=0 #13
