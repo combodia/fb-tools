@@ -77,26 +77,22 @@ export default class FBTools {
                 win.on('loaded',()=>{
                     console.log('win.loaded');
                     let doc = win.window.document;
-                    setTimeout(()=>{
-                    
-                        let form = doc.querySelector('form#login_form');
-                        if ( form )return this.login(form);
-                        let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
-                        if ( !ptl ){
-                            console.log('ptl not found');
-                            return this.setState(-1, 1, 1 );
-                        }
-                        let post = doc.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
-                        if ( post.length == 0 )return this.setState(1, 1, 1);
-                        for( let div of post ){
-                            // console.log(div);
-                            let child = div.children[1] || div.children[0];
-                            if ( !child ) continue;
-                            if ( this.hasNewPost( child ) )return this.setState(1,1,1);
-                        }
-    
-                        this.setState(-1, 1, 1 );
-                    }, 500);
+                    let form = doc.querySelector('form#login_form');
+                    if ( form )return this.login(form);
+                    let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
+                    if ( !ptl ){
+                        console.log('ptl not found');
+                        return this.setState(-1, 1, 1 );
+                    }
+                    let post = doc.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
+                    if ( post.length == 0 )return this.setState(1, 1, 1);
+                    for( let div of post ){
+                        // console.log(div);
+                        let child = div.children[1] || div.children[0];
+                        if ( !child ) continue;
+                        if ( this.hasNewPost( child ) )return this.setState(1,1,1);
+                    }
+                    this.setState(-1, 1, 1 );
                 })
             })
         }else this.win.window.location.href = url;//this.win.close(),delete this.win;
