@@ -47,7 +47,9 @@ form .item>input:focus{ color: var(--special);}
 button{ background-color: var(--primary-color); color: var(--highlight); border: none; box-shadow: 0 0 1px var(--alpha-dark); line-height: 36px; padding: 0 10px; border-radius: 2px;}
 button:hover{ background-color: var(--second-color); color: var(--special);}
 ol.list{ padding: 10px; margin: 0; column-count: 3;-webkit-column-break-inside: avoid;}
-ol>li{ margin: 0; padding:0; break-inside: avoid; line-height: 30px;}
+ol,li{ list-style: none;}
+ol>li{ margin: 0; padding:0; break-inside: avoid; line-height: 30px; white-space: nowrap; }
+ol>li::before{content: attr(data-index); display: inline-block; min-width: 30px; vertical-align: middle;max-width: 80px; width: 20%; overflow: hidden; margin-right: 10px; text-align: right;}
 ol>li>span{ display: inline-block; padding: 0 10px;}
 ol>li[data-state="1"]{ background-color: var(--primary-color);color: var(--white);}
 ol>li[data-state="-1"]{ background-color: var(--bg-second);color: var(--halftone);}
