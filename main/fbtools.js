@@ -68,7 +68,7 @@ export default class FBTools {
         let url = 'https://facebook.com/'+dom.dataset.id
         if (!this.win ){
             nw.Window.open( url,{
-                show:false
+                // show:false
                 // inject_js_end: 'main/inject-end.js'
             }, win=> {
                 this.win = win;
@@ -205,8 +205,8 @@ export default class FBTools {
             let conf = this.setting;
             let btn = form.querySelector('button[type="submit"]');
             btn.textContent = 'Connecting ...'
-            if ( !btn.dataset.text )btn.dataset.text = btn.textContent;
             for (let k in conf) {
+                if ( !btn.dataset.text )btn.dataset.text = btn.textContent;
                 if (k in form) {
                     let val = form[k].value;
                     if (/^([0-9])+$/ig.test(val)) val = parseInt(val);
