@@ -94,7 +94,7 @@ export default class FBTools {
                     }
 
                     this.setState(-1, 1, 1 );
-                },1e3);
+                }, 500);
             })
         })
     }
