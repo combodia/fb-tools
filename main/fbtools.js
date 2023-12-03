@@ -65,38 +65,41 @@ export default class FBTools {
             return this.check(index + 1);
         }
         
-        if (this.win )this.win.close(),delete this.win;
-        console.log( 'index',index, 'page', this.page + '/' + this.pages +':'+ this.max );
-        nw.Window.open('https://facebook.com/'+dom.dataset.id,{
-            show:false
-            // inject_js_end: 'main/inject-end.js'
-        }, win=> {
-            this.win = win;
-            win.on('loaded',()=>{
-                console.log('win.loaded');
-                let doc = win.window.document;
-                setTimeout(()=>{
-                
-                    let form = doc.querySelector('form#login_form');
-                    if ( form )return this.login(form);
-                    let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
-                    if ( !ptl ){
-                        console.log('ptl not found');
-                        return this.setState(-1, 1, 1 );
-                    }
-                    let post = doc.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
-                    if ( post.length == 0 )return this.setState(1, 1, 1);
-                    for( let div of post ){
-                        // console.log(div);
-                        let child = div.children[1] || div.children[0];
-                        if ( !child ) continue;
-                        if ( this.hasNewPost( child ) )return this.setState(1,1,1);
-                    }
-
-                    this.setState(-1, 1, 1 );
-                }, 500);
+        let url = 'https://facebook.com/'+dom.dataset.id
+        if (!this.win ){
+            nw.Window.open( url,{
+                show:false
+                // inject_js_end: 'main/inject-end.js'
+            }, win=> {
+                this.win = win;
+                win.on('loaded',()=>{
+                    console.log('win.loaded');
+                    let doc = win.window.document;
+                    setTimeout(()=>{
+                    
+                        let form = doc.querySelector('form#login_form');
+                        if ( form )return this.login(form);
+                        let ptl = doc.querySelector('div[data-pagelet="ProfileTimeline"]');
+                        if ( !ptl ){
+                            console.log('ptl not found');
+                            return this.setState(-1, 1, 1 );
+                        }
+                        let post = doc.querySelectorAll('div[data-pagelet="ProfileTimeline"]>div');
+                        if ( post.length == 0 )return this.setState(1, 1, 1);
+                        for( let div of post ){
+                            // console.log(div);
+                            let child = div.children[1] || div.children[0];
+                            if ( !child ) continue;
+                            if ( this.hasNewPost( child ) )return this.setState(1,1,1);
+                        }
+    
+                        this.setState(-1, 1, 1 );
+                    }, 500);
+                })
             })
-        })
+        }else win.window.location.href = url;//this.win.close(),delete this.win;
+        console.log( 'index',index, 'page', this.page + '/' + this.pages +':'+ this.max );
+        
     }
     hasNewPost(div){
         let ts = div.querySelector('div>div>div>span>span>span>span>a[aria-label][role="link"]>span');
