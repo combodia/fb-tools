@@ -97,7 +97,7 @@ export default class FBTools {
                     }, 500);
                 })
             })
-        }else win.window.location.href = url;//this.win.close(),delete this.win;
+        }else this.win.window.location.href = url;//this.win.close(),delete this.win;
         console.log( 'index',index, 'page', this.page + '/' + this.pages +':'+ this.max );
         
     }
@@ -153,7 +153,7 @@ export default class FBTools {
                     alert('Error'); 
                     return;
                 }
-                let msg = `Limit: ${this.setting.limit}, Page: ${this.page}/${this.max}, Total Pages: ${this.total}`;
+                let msg = `Limit: ${this.setting.limit}, Page: ${this.page}/${this.max}, Total: ${this.total}`;
                 console.log(msg);
                 
                 document.body.innerHTML = `<progress id="progress"></progress><div>${msg}</div>`;
